@@ -1,0 +1,122 @@
+[tool.poetry]
+name = "clustering-app"
+version = "0.1.0"
+description = ""
+authors = ["marek.pavelka12@gmail.com"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+
+[tool.poetry.group.dev.dependencies]
+ruff = ">=0.14.0,<0.15.0"
+pytest = "^8.4.2"
+ty = "^0.0.1a22"
+
+[tool.ruff]
+exclude = [".venv", ".git", "__pycache__", "build", "dist", "venv"]
+line-length = 88
+target-version = "py312"
+src = ["app"]
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+ignore = [
+    "N818",    # Exception names should end in "Error"
+    "RUF001",  # ambiguous character
+    "RUF002",  # ambiguous character
+    "RUF003",  # ambiguous character
+    "RUF012",  # mutable class attributes
+    "PTH123",  # open should be replaced by Path.open
+    "B904",    # except clause
+    "S101",    # use of assert
+    "PLR2004", # magic value
+    "PLR0911", # too many return statements
+    "PLR0912", # too many branches
+    "PLR0913", # too many arguments
+    "PLR0915", # too many statements
+    "SIM102",  # simplify: collapsible-if
+    "SIM103",  # simplify: needless-bool
+    "SIM105",  # simplify: suppressible-exception
+    "SIM108",  # simplify: if-else-block-instead-of-if-exp
+    "SIM114",  # simplify: if-with-same-arms
+    "SIM118",  # simplify: in-dict-keys
+    "PIE807",  # pylint: unnecessary-lambda-assignment
+]
+select = [
+    "E",     # pycodestyle 'error'
+    "F",     # pyflakes
+    "W",     # 'warning'
+    "I",     # isort
+    "N",     # pep-8 naming conventions
+    "D300",  # use `"""` for docstrings
+    "D301",  # escape """ if needed with r"""
+    "D213",  # Multi-line docstring summary should start at the second line
+    "D209",  # Multi-line docstring closing quotes should be on a separate line
+    "D415",  # First line should end with a period
+    "D207",  # Docstring is under-indented
+    "D208",  # Docstring is over-indented
+    "D403",  # First word of the first line should be properly capitalized
+    "D417",  # Missing argument descriptions in the docstring
+    "D419",  # Docstring is empty
+    "D412",  # Missing blank line between header/content
+    "D411",  # Blank line above section
+    "D410",  # Missing blank line after section
+    "D409",  # Section underline
+    "D408",  # Section underline
+    "D404",  # Do not start docstring with 'this'
+    "D414",  # Checks docstring sections
+    "D407",  # Missing dashed underline after section
+    "D406",  # Section name should end with a newline
+    "D405",  # Section name should end with a newline
+    "D402",  # no fn signature
+    "UP",    # pyupgrade for modern python syntax
+    "RUF",   # ruff-specific rules
+    "PTH",   # prefer pathlib over os.path
+    "G",     # logging
+    "T20",   # print statements
+    "A",     # checking for shadowing of builtins
+    "B",     # bugbear
+    "S",     # bandit
+    "PERF",  # performance
+    "ASYNC", # async
+    "Q",     # quotes
+    "SLOT",  # flake8-slot,
+    "ISC",   # flake8-implicit-str-concat
+    "SIM",   # simplify
+    "PYI",   # flake8-pyi, annotations
+    "FAST",  # fastapi
+    "FURB",  # refurb
+    "PLC",   # pylint convention
+    "PLE",   # pylint error
+    "PLR",   # pylint refactor
+    "PLW",   # pylint warning
+    "NPY",   # numpy
+    "YTT",   # flake8-2020
+    "ICN",   # flake8-import-conventions
+    "PIE",   # flake8-pie
+    "TID",   # flake8-tidy-imports
+    "INT",   # flake8-gettext
+]
+unfixable = []
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+ignore-decorators = ["router.post", "router.get", "model_validator"]
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore `E402` (import violations) in all `__init__.py` files
+"__init__.py" = ["E402", "F401"]
+"tests/*" = ["E501", "D", "T20", "ASYNC", "B", "S"]
+"*.ipynb" = ["B018", "T201", "PLW2901", "E501"]
+
+[tool.ruff.lint.isort]
+split-on-trailing-comma = false
+
+[tool.ruff.format]
+skip-magic-trailing-comma = true
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
