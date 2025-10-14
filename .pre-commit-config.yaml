@@ -16,5 +16,5 @@ repos:
   hooks:
     - id: ty
       name: ty check
-      entry: ty check .
-      language: python
+      entry: .venv/bin/ty check .
+      language: system
